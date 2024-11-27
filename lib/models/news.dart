@@ -22,3 +22,4 @@ class News {
     return data;
   }
 }
+
