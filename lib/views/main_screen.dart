@@ -3,29 +3,30 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:my_member_link_lab/models/news.dart';
 import 'package:my_member_link_lab/myconfig.dart';
+import 'package:my_member_link_lab/views/mydrawer.dart';
 import 'package:my_member_link_lab/views/new_news.dart';
 import 'package:http/http.dart' as http;
 import 'package:animations/animations.dart';
 
-class NewsScreen extends StatefulWidget {
-  const NewsScreen({Key? key}) : super(key: key);
+class MainScreen extends StatefulWidget {
+  const MainScreen({Key? key}) : super(key: key);
 
   @override
-  State<NewsScreen> createState() => _MainScreenState();
+  State<MainScreen> createState() => _MainScreenState();
 }
 
-class _MainScreenState extends State<NewsScreen> with SingleTickerProviderStateMixin {
+class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateMixin {
   List<News> newsList = [];
   List<News> filteredNewsList = [];
   final df = DateFormat('dd MMM yyyy, hh:mm a');
-  
+
   int numofpage = 1;
   int curpage = 1;
   int numofresult = 0;
-  
+
   final TextEditingController _searchController = TextEditingController();
   late AnimationController _animationController;
-  
+
   Map<String, bool> likedStatus = {};
   bool _isLoading = true;
 
@@ -250,6 +251,7 @@ class _MainScreenState extends State<NewsScreen> with SingleTickerProviderStateM
           ),
         ),
       ),
+      drawer: const MyDrawer(),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : Column(

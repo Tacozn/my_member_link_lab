@@ -1,8 +1,7 @@
-
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:my_member_link_lab/myconfig.dart';
-import 'package:my_member_link_lab/views/news_screen.dart';
+import 'package:my_member_link_lab/views/main_screen.dart';
 import 'package:my_member_link_lab/views/register_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;

@@ -6,12 +6,13 @@ if (!isset($_POST)) {
 }
 
 include_once("dbconnect.php");
-$email = $_POST['email'];
-$password = sha1($_POST['password']);
+$newsid = $_POST['newsid'];
+$title = addslashes($_POST['title']);
+$details =addslashes( $_POST['details']);
 
-$sqlinsert="INSERT INTO `tbl_admins`(`admin_email`, `admin_pass`) VALUES ('$email','$password')";
+$sqlupdatenews="UPDATE `tbl_news` SET `news_title`='$title',`news_details`='$details' WHERE `news_id` = '$newsid'";
 
-if ($conn->query($sqlinsert) === TRUE) {
+if ($conn->query($sqlupdatenews) === TRUE) {
 	$response = array('status' => 'success', 'data' => null);
     sendJsonResponse($response);
 }else{

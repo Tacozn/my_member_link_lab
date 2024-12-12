@@ -114,3 +114,17 @@ CREATE TABLE `tbl_likes` (
   FOREIGN KEY (`user_id`) REFERENCES `tbl_admins`(`admin_id`) ON DELETE CASCADE,
   FOREIGN KEY (`news_id`) REFERENCES `tbl_news`(`news_id`) ON DELETE CASCADE
 );
+
+CREATE TABLE products (
+    product_id INT AUTO_INCREMENT PRIMARY KEY,
+    product_name VARCHAR(255) NOT NULL,
+    product_description TEXT,
+    product_price DECIMAL(10,2) NOT NULL,
+    product_quantity INT NOT NULL,
+    product_image VARCHAR(255)
+);
+
+INSERT INTO products (product_name, product_description, product_price, product_quantity, product_image) VALUES 
+('Membership T-Shirt', 'Official club t-shirt', 25.99, 50, 'tshirt.jpg'),
+('Club Mug', 'Ceramic mug with club logo', 12.50, 100, 'mug.jpg'),
+('Tote Bag', 'Durable canvas tote', 19.99, 75, 'totebag.jpg');

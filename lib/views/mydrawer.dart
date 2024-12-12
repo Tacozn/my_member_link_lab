@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-//import 'package:my_member_link_lab/views/event_screen.dart';
 import 'package:my_member_link_lab/views/news_screen.dart';
+import 'package:my_member_link_lab/views/product_list_screen.dart';
+import 'package:my_member_link_lab/views/main_screen.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -8,74 +9,63 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: const Color.fromARGB(255, 97, 160, 211),  
       child: ListView(
         children: [
           DrawerHeader(
-            decoration: const BoxDecoration(
-              // Add optional background styling here
-            ),
+            decoration: const BoxDecoration(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
                   'MyMemberLink',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white), 
                 ),
-                const SizedBox(height: 10), // Spacing between text and image
+                const SizedBox(height: 10),
                 Image.asset(
-                  'assets/images/metlo.png', // Replace with your image path
-                  height: 80, // Adjust image height
-                  width: 80, // Adjust image width
-                  fit: BoxFit.cover, // Adjust how the image fits the box
+                  'assets/images/metlo.png',
+                  height: 80,
+                  width: 80,
+                  fit: BoxFit.cover,
                 ),
               ],
             ),
           ),
           ListTile(
+            title: const Text("News", style: TextStyle(color: Colors.white)),  
             onTap: () {
               Navigator.pop(context);
               Navigator.push(
                 context,
-                PageRouteBuilder(
-                  pageBuilder: (context, animation, secondaryAnimation) =>
-                      const MainScreen(),
-                  transitionsBuilder:
-                      (context, animation, secondaryAnimation, child) {
-                    const begin = Offset(1.0, 0.0); // Slide in from the right
-                    const end = Offset.zero;
-                    const curve = Curves.ease;
-
-                    var tween = Tween(begin: begin, end: end)
-                        .chain(CurveTween(curve: curve));
-                    var offsetAnimation = animation.drive(tween);
-
-                    return SlideTransition(
-                      position: offsetAnimation,
-                      child: child,
-                    );
-                  },
+                MaterialPageRoute(
+                  builder: (context) => const NewsScreen(),
                 ),
               );
             },
-            title: const Text("Newsletter"),
           ),
-          const ListTile(
-            title: Text("Members"),
+          ListTile(
+            title: const Text("Products", style: TextStyle(color: Colors.white)),  // White text color
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ProductListScreen(),
+                ),
+              );
+            },
           ),
-          const ListTile(
-            title: Text("Payments"),
-          ),
-          const ListTile(
-            title: Text("Products"),
-          ),
-          const ListTile(
-            title: Text("Vetting"),
-          ),
-          const ListTile(
-            title: Text("Settings"),
-          ),
-          const ListTile(
-            title: Text("Logout"),
+          ListTile(
+            title: const Text("Home", style: TextStyle(color: Colors.white)),  // White text color
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const MainScreen(),
+                ),
+              );
+            },
           ),
         ],
       ),
