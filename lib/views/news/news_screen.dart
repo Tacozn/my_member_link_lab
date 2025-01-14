@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:my_member_link_lab/models/news.dart';
 import 'package:my_member_link_lab/myconfig.dart';
-import 'package:my_member_link_lab/views/new_news.dart';
+import 'package:my_member_link_lab/views/news/new_news.dart';
 import 'package:http/http.dart' as http;
 import 'package:animations/animations.dart';
 
@@ -102,7 +102,7 @@ class _MainScreenState extends State<NewsScreen> with SingleTickerProviderStateM
   Widget _buildNewsCard(News news) {
     return OpenContainer(
       closedColor: Colors.white,
-      openColor: Colors.blue,
+      openColor: Colors.blue.shade500,
       transitionDuration: const Duration(milliseconds: 500),
       closedBuilder: (context, action) => Card(
         color: Colors.blue.shade50,
@@ -207,49 +207,55 @@ class _MainScreenState extends State<NewsScreen> with SingleTickerProviderStateM
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'News Hub',
-          style: TextStyle(fontWeight: FontWeight.bold),
+  return Scaffold(
+    appBar: AppBar(
+      title: const Text(
+        'News Hub',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: Colors.white, // Add white text color
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.refresh),
-            onPressed: loadNewsData,
-          ),
-          IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () async {
-              await Navigator.push(
-                context,
-                MaterialPageRoute(builder: (content) => const NewNewsScreen())
-              );
-              loadNewsData();
-            },
-          ),
-        ],
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(60),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              controller: _searchController,
-              decoration: InputDecoration(
-                hintText: 'Search news...',
-                prefixIcon: const Icon(Icons.search),
-                filled: true,
-                fillColor: Colors.white,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide.none,
-                ),
+      ),
+      backgroundColor: Colors.blue[800], // Match membership blue
+      iconTheme: IconThemeData(color: Colors.white), // White icons
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.refresh),
+          onPressed: loadNewsData,
+        ),
+        IconButton(
+          icon: const Icon(Icons.add),
+          onPressed: () async {
+            await Navigator.push(
+              context,
+              MaterialPageRoute(builder: (content) => const NewNewsScreen())
+            );
+            loadNewsData();
+          },
+        ),
+      ],
+      bottom: PreferredSize(
+        preferredSize: const Size.fromHeight(60),
+        child: Container(
+          color: Colors.blue[800], // Match the app bar color
+          padding: const EdgeInsets.all(8.0),
+          child: TextField(
+            controller: _searchController,
+            decoration: InputDecoration(
+              hintText: 'Search news...',
+              prefixIcon: const Icon(Icons.search),
+              filled: true,
+              fillColor: Colors.white,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide.none,
               ),
-              onChanged: _searchNews,
             ),
+            onChanged: _searchNews,
           ),
         ),
       ),
+    ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : Column(
@@ -289,7 +295,7 @@ class _MainScreenState extends State<NewsScreen> with SingleTickerProviderStateM
                                 ? Colors.white
                                 : Colors.black,
                             backgroundColor: (curpage - 1) == index 
-                                ? Colors.blue 
+                                ? Colors.blue[800] // Match membership blue
                                 : Colors.transparent,
                           ),
                           child: Text((index + 1).toString()),

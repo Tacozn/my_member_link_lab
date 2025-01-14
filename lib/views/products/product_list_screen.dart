@@ -5,7 +5,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:my_member_link_lab/myconfig.dart';
 import 'package:my_member_link_lab/models/product.dart';
 import 'package:my_member_link_lab/models/cart.dart';
-import 'package:my_member_link_lab/views/cart_screen.dart';
+import 'package:my_member_link_lab/views/products/cart_screen.dart';
+
 
 class ProductListScreen extends StatefulWidget {
   const ProductListScreen({Key? key}) : super(key: key);
@@ -207,36 +208,43 @@ class _ProductListScreenState extends State<ProductListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Membership Products',
-            style: TextStyle(color: Colors.white)),
-        backgroundColor: Colors.blueAccent,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.shopping_cart),
-            onPressed: _navigateToCartScreen,
-          ),
-        ],
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(60),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              controller: _searchController,
-              decoration: InputDecoration(
-                hintText: 'Search products...',
-                prefixIcon: const Icon(Icons.search, color: Colors.lightBlue),
-                filled: true,
-                fillColor: Colors.white,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide.none,
-                ),
-              ),
-              onChanged: _searchProducts,
-            ),
+  title: const Text(
+    'Membership Products',
+    style: TextStyle(
+      color: Colors.white,
+      fontWeight: FontWeight.bold
+    )
+  ),
+  backgroundColor: Colors.blue[800], // Update from Colors.blueAccent
+  iconTheme: IconThemeData(color: Colors.white),
+  actions: [
+    IconButton(
+      icon: const Icon(Icons.shopping_cart, color: Colors.white),
+      onPressed: _navigateToCartScreen,
+    ),
+  ],
+  bottom: PreferredSize(
+    preferredSize: const Size.fromHeight(60),
+    child: Container(
+      color: Colors.blue[800], // Match app bar color
+      padding: const EdgeInsets.all(8.0),
+      child: TextField(
+        controller: _searchController,
+        decoration: InputDecoration(
+          hintText: 'Search products...',
+          prefixIcon: const Icon(Icons.search),
+          filled: true,
+          fillColor: Colors.white,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide.none,
           ),
         ),
+        onChanged: _searchProducts,
       ),
+    ),
+  ),
+),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : Column(

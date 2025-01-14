@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_member_link_lab/views/splash_screen.dart';
+import 'package:my_member_link_lab/views/home/login_screen.dart';
+
 
 
 void main() {
@@ -16,46 +17,24 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
-          seedColor:
-              const Color(0xFF0844F4), // Custom blue as the primary color
+          seedColor: Colors.blue[800]!, 
           brightness: Brightness.light,
         ).copyWith(
-          primary: const Color(0xFF0844F4),
+          primary: Colors.blue[800],
           onPrimary: Colors.white,
-          primaryContainer: const Color(
-              0xFF4D73FF), // A lighter shade of primary for containers
-          secondary: Colors.blue[600]!, // Use a complementary blue as secondary
+          primaryContainer: Colors.blue[600],
+          secondary: Colors.blue[600],
           onSecondary: Colors.white,
           background: Colors.white,
           onBackground: Colors.black87,
           surface: Colors.blue[50]!,
-          onSurface: Colors.black87,
-          error: Colors.redAccent,
-          onError: Colors.white,
+              onSurface: Colors.black87,
+              error: Colors.redAccent,
+              onError: Colors.white,
         ),
       ),
-      darkTheme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF0844F4),
-          brightness: Brightness.dark,
-        ).copyWith(
-          primary:
-              const Color(0xFF4D73FF), // Lighter primary color for dark mode
-          onPrimary: Colors.black87,
-          primaryContainer:
-              const Color(0xFF0844F4), // Darker primary container color
-          secondary: Colors.blue[200]!,
-          onSecondary: Colors.black87,
-          background: Colors.black87,
-          onBackground: Colors.white,
-          surface: Colors.blueGrey[800]!,
-          onSurface: Colors.white,
-          error: Colors.redAccent,
-          onError: Colors.black87,
-        ),
-      ),
-      home: const SplashScreen(),
+      
+      home: const LoginScreen(),
     );
   }
 }

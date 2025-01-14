@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:my_member_link_lab/models/news.dart';
 import 'package:my_member_link_lab/myconfig.dart';
-import 'package:my_member_link_lab/views/mydrawer.dart';
-import 'package:my_member_link_lab/views/new_news.dart';
+import 'package:my_member_link_lab/views/home/mydrawer.dart';
+import 'package:my_member_link_lab/views/news/new_news.dart';
 import 'package:http/http.dart' as http;
 import 'package:animations/animations.dart';
 
@@ -208,13 +208,18 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'News Hub',
-          style: TextStyle(fontWeight: FontWeight.bold),
+  return Scaffold(
+    appBar: AppBar(
+      title: const Text(
+        'News Hub',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: Colors.white,  // Update text color
         ),
-        actions: [
+      ),
+      backgroundColor: Colors.blue[800],  // Match membership blue
+      iconTheme: IconThemeData(color: Colors.white),  // White icons
+      actions: [
           IconButton(
             icon: const Icon(Icons.refresh),
             onPressed: loadNewsData,
@@ -231,10 +236,11 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
           ),
         ],
         bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(60),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
+        preferredSize: const Size.fromHeight(60),
+        child: Container(
+          color: Colors.blue[800],  // Match app bar color
+          padding: const EdgeInsets.all(8.0),
+          child: TextField(
               controller: _searchController,
               decoration: InputDecoration(
                 hintText: 'Search news...',
@@ -291,7 +297,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
                                 ? Colors.white
                                 : Colors.black,
                             backgroundColor: (curpage - 1) == index 
-                                ? Colors.blue 
+                                ? Colors.blue.shade500 
                                 : Colors.transparent,
                           ),
                           child: Text((index + 1).toString()),

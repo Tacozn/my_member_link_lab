@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:my_member_link_lab/myconfig.dart';
-import 'package:my_member_link_lab/views/main_screen.dart';
-import 'package:my_member_link_lab/views/register_screen.dart';
+import 'package:my_member_link_lab/views/home/main_screen.dart';
+import 'package:my_member_link_lab/views/home/register_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
@@ -235,8 +235,10 @@ class _LoginScreenState extends State<LoginScreen> {
             content: Text("Login Success"),
             backgroundColor: Colors.green,
           ));
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (content) => MainScreen()));
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (content) => MainScreen()),
+          );
         } else {
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: Text("Login Failed"),
